@@ -4,13 +4,13 @@
 
 #define FILE_OFFSET 3
 
-char FILES[10][256] = {
+char FILES[10][20] = {
 	"config.txt",
 	"pass.txt",
 	"project_ideas.txt",
-	"sbom_1.xml",
-	"sbom_2.xml",
-	"sbom_3.xml",
+	"test1.xml",
+	"test2.xml",
+	"test3.xml",
 	"comm_partner.cfg",
 	"chat_logs.txt",
 	"useful_commands.txt",
@@ -22,6 +22,7 @@ int main() {
 	scanf("%d", &x);
 	if (x < 0) {
 		printf("Invalid array index!\n");
+		return 1;
 	}
 	int8_t file_index = x + FILE_OFFSET;
 	
