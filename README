@@ -2,7 +2,11 @@
   / _ \ |/|/ / _ \/ __/ _ `/  ' \/ _ \
  / .__/__,__/_//_/\__/\_,_/_/_/_/ .__/
 /_/                            /_/    
---------------------------------------
+------------------------------------------------------------------------------
 
- Hacking bootcamp focused on binary
- exploitation and reverse engineering.
+ Hacking bootcamp focused on binary exploitation and reverse engineering.
+
+
+Credits
+-----------------------------------------------------------------------------
+ CVE-2016-9892 PoC XML files from ESET: https://seclists.org/fulldisclosure/2017/Feb/68

@@ -1,0 +1,7 @@
+find . -name "NAME" -exec mv {} ~/ \;
+xdg-open
+tar xvfz TARNAME
+tar vfz TARNAME files...
+df
+du
+ps aux

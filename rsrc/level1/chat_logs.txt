@@ -1,0 +1,5 @@
+[30/05, 15:28] cmichaels: Can you help me with the overflow tests?
+[30/05, 15:28] cmichaels: Also, I can't find the link for the full disclosure
+[30/05, 15:32] pking: Yeah sure, in 5 minutes? Check the wiki, the links are there.
+[30/05, 15:33] cmichaels: That's good for me.
+[30/05, 15:34] cmichaels: Found them on the wiki, thanks! Call me when you're free.
