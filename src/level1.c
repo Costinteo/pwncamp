@@ -19,6 +19,10 @@ char FILES[10][20] = {
 
 int main() {
 	int16_t x;
+	printf("Input number for file to read:\n");
+	for (int i = FILE_OFFSET; i < 10; i++) {
+		printf("%d. %s\n", i - FILE_OFFSET, FILES[i]);
+	}
 	scanf("%d", &x);
 	if (x < 0) {
 		printf("Invalid array index!\n");
