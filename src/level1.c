@@ -34,8 +34,8 @@ int main() {
 
 	char line[256];
 	FILE * f = fopen(FILES[file_index], "r");
-	while (fgets(line, sizeof(line), f) != NULL) {
-		printf("%s", line);		
+	while (fgets(line, sizeof(line), f)) {
+		puts(line);		
 	}
 	return 0;
 }
