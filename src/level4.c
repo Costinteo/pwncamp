@@ -48,7 +48,6 @@ int main(int argc, char * argv[]) {
 	gets(input);
 	for (int i = 0; func_arr[i]; i++) {
 		(*func_arr[i]) (input);
-		printf("%s\n", input);
 	}
 	return 0;
 }
