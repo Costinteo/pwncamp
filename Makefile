@@ -1,3 +1,6 @@
+# This Makefile is pretty generic, might make a more specific one,
+# or add specific compilation for some binaries.
+
 SHELL = /bin/sh
 
 SRCS := $(wildcard src/*.c)
