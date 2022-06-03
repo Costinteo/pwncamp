@@ -19,7 +19,7 @@ void xreset_vault() {
 
 void xcrypt(char * pass, const char * key) {
 	int pos = 0;
-	for (;*pass;*pass=*pass+key[pos%strlen(key)], pass++, pos++);
+	for (;*pass;*pass=*pass^key[pos%strlen(key)], pass++, pos++);
 }
 
 void store_pass(const char * platform, char * pass, const char * key) {
@@ -44,7 +44,7 @@ void load_pass(const char * key, const char * platform) {
 		if (!strcmp(line, platform)) {
 			char password[64] = "";
 			strcpy(password, delim + 1);
-			password[strlen(password)] = '\0';
+			password[strlen(password) - 1] = '\0';
 			xcrypt(password, key);
 			puts(password);
 		}
