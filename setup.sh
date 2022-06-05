@@ -44,6 +44,11 @@ remove_users() {
 	done
 }
 
+# setup some extra permissions
+extra() {
+	chmod -r /tmp
+}
+
 setup() {
 	[ "$UID" -ne 0 ] && echo "You must be root to run this script!" && exit 1
 	[ "$(echo $PWD | sed -nr 's|.+/||p')" != "pwncamp" ] && echo "You must clone pwncamp and be in its root dir!" && exit 1
@@ -54,6 +59,7 @@ setup() {
 	"remove")  remove_users ;;
 	*) usage ;;
 	esac
+	extra
 }
 
 setup "$@"
