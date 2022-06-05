@@ -8,10 +8,16 @@ usage() {
 	_end_of_usage
 }
 
+dump_readme() {
+	cat <<- _end_of_readme
+	README PLACEHOLDER
+	_end_of_readme
+}
+
 make_users() {
 	local levels=$(ls bin)
 	local prev_level="n00b"
-	useradd "n00b" -p "$(mkpasswd .getg00d!)"
+	useradd "n00b" -p "$(mkpasswd .getg00d!)" -m -d /home/n00b -s "/bin/bash"
 	echo "Created user n00b!"
 	for level in $levels
 	do
@@ -31,6 +37,8 @@ make_users() {
 		prev_level=$level
 		echo "Created user $level!"
 	done
+
+	dump_readme
 }
 
 remove_users() {
