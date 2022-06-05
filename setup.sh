@@ -2,13 +2,17 @@
 # Script for setting up the environment 
 # on a fresh virtual machine
 
-install() {
-	[ "$UID" -ne 0 ] && echo "You must be root to run this script!" && exit 1
-	[ "$(echo $PWD | sed -nr 's|.+/||p')" != "pwncamp" ] && echo "You must clone pwncamp and be in its root dir!" && exit 1
-	make
+usage() {
+	cat <<- _end_of_usage
+	Usage: setup.sh [install|remove]
+	_end_of_usage
+}
+
+make_users() {
 	local levels=$(ls bin)
 	local prev_level="n00b"
 	useradd "n00b" -p "$(mkpasswd .getg00d!)"
+	echo "Created user n00b!"
 	for level in $levels
 	do
 		grep "$level" /etc/passwd -q
@@ -25,7 +29,31 @@ install() {
 		# suid
 		chmod u+s /home/$level/$level
 		prev_level=$level
+		echo "Created user $level!"
 	done
 }
 
-install "$@"
+remove_users() {
+	local levels=$(ls bin)
+	userdel -r n00b
+	echo "Deleted user n00b..."
+	for level in $levels
+	do
+		userdel -r $level
+		echo "Deleted user $level..."
+	done
+}
+
+setup() {
+	[ "$UID" -ne 0 ] && echo "You must be root to run this script!" && exit 1
+	[ "$(echo $PWD | sed -nr 's|.+/||p')" != "pwncamp" ] && echo "You must clone pwncamp and be in its root dir!" && exit 1
+	make
+	local mode=$1
+	case "$mode" in
+	"install") make_users   ;;
+	"remove")  remove_users ;;
+	*) usage ;;
+	esac
+}
+
+setup "$@"
