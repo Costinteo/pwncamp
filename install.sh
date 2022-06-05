@@ -14,16 +14,16 @@ install() {
 		grep "$level" /etc/passwd -q
 		[ $? -eq 0 ] && echo "User $level already exists!" && exit 1
 		local password=$(cat "./rsrc/$level/pass.txt" | cut -d : -f 2)
-		useradd "$level" -p "$password" -m -d "/home/$level" -s "/bin/bash"
-		cp -r "./rsrc/$level/*" "/home/$level/"
-		cp "./bin/$level" "/home/$level/"
+		useradd "$level" -p "$(mkpasswd $password)" -m -d /home/$level -s "/bin/bash"
+		cp -r ./rsrc/$level/* /home/$level/
+		cp ./bin/$level /home/$level/
 		# owning
-		chown "$level:$prev_level" "/home/$level/*"
+		chown "$level:$prev_level" /home/$level/*
 		# perms
-		chmod 400 "/home/$level/*"
-		chmod 550 "/home/$level/$level"
+		chmod 400 /home/$level/*
+		chmod 550 /home/$level/$level
 		# suid
-		chmod u+s "/home/$level/$level"
+		chmod u+s /home/$level/$level
 		prev_level=$level
 	done
 }
