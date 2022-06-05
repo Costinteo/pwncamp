@@ -8,7 +8,7 @@ install() {
 	make
 	local levels=$(ls bin)
 	local prev_level="n00b"
-	useradd "n00b" -p "#getg00d#"
+	useradd "n00b" -p "$(mkpasswd .getg00d!)"
 	for level in $levels
 	do
 		grep "$level" /etc/passwd -q
