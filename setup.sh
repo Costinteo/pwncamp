@@ -52,9 +52,9 @@ dump_readme() {
 	    > pwntools         [https://github.com/Gallopsled/pwntools]
 	    > radare2          [https://github.com/radareorg/radare2]
 	    > checksec         [https://github.com/slimm609/checksec.sh]
+	    > angr             [https://angr.io/]
 
-	  Other recommended tools:
-	    > angr          [https://angr.io/]
+	  Other recommended tools (not installed):
 	    > x64dbg        [https://github.com/x64dbg/x64dbg]
 	    > shellme       [https://github.com/hatRiot/shellme]
 	    > shellcode_gen [https://masterccc.github.io/tools/shellcode_gen/]
@@ -74,7 +74,7 @@ dump_readme() {
 	    > etc...
 
 	  Because they have a GUI, they would have to be installed locally.
-	  You can use "scp" to download binaries locally, to your machine. 
+	  You can use "scp" to download binaries to your machine. 
 	  Example (on your machine):
 	  $ scp -P <port> <user>@<host>:/path/to/remote/src /path/to/local/dest
 	
