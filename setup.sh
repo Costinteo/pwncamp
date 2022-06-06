@@ -7,6 +7,7 @@
 # have README/motd be a file in rsrc
 # use rsrc/levels to create homes
 # bootstrap all packages
+# don't let n00b write in its own home
 
 usage() {
 	cat <<- _end_of_usage
