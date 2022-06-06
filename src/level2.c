@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 
 char template[] = "/tmp/log.XXXXXX";
 int log_msg_count = 0;
@@ -30,15 +31,31 @@ void read_log(char filename[]) {
 	}
 }
 
+void make_tmp(char * tmp) {
+	char day[3];
+	char min[3];
+	char sec[3];
+	time_t rawtime;
+	struct tm * timeinfo;
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+	*strchr(tmp, X) = '\0';
+	strcat(tmp, itoa(timeinfo.tm_mday, day, 10));
+	strcat(tmp, itoa(timeinfo.tm_min, min, 10));
+	strcat(tmp, itoa(timeinfo.tm_sec, sec, 10));
+	strcat(tmp, "\0");
+}
+
 int main() {
 	FILE * f = NULL;
 	char * debug_mode = getenv("DEBUG");
 
 	if (debug_mode && !strcmp(debug_mode, "TRUE")) {
-		mktemp(template);
+		make_tmp(template);
 		write_log(template, "DEBUG MODE IS ENABLED!", 0);
 		write_log(template, "Testing logging.", 0);
 		setreuid(geteuid(), geteuid());
+		sleep(1);
 		read_log(template);
 	}
 
