@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 FILE * VAULT;
-char VAULT_NAME[] = "\x04\x5a\x4b\x59\x59\x75\x5c\x4b\x5f\x46\x5e";
+char VAULT_NAME[] = "\x05\x5e\x47\x5a\x05\x04\x5a\x4b\x59\x59\x75\x5c\x4b\x5f\x46\x5e";
 
 void xopen_vault(const char * mode) {
 	setreuid(geteuid(), geteuid());
