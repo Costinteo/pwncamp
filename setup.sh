@@ -6,6 +6,7 @@
 # write a better usage
 # have README/motd be a file in rsrc
 # use rsrc/levels to create homes
+# bootstrap all packages
 
 usage() {
 	cat <<- _end_of_usage
@@ -101,7 +102,9 @@ make_users() {
 	chmod 555 /home/n00b
 	dump_readme > /home/n00b/README
 	chmod 444 /home/n00b/README
+	# motd
 	cp /home/n00b/README /etc/motd
+	rm /etc/update-motd.d/*
 	echo "Created user n00b!"
 
 	for level in $levels
