@@ -105,6 +105,7 @@ make_users() {
 	# motd
 	cp /home/n00b/README /etc/motd
 	rm /etc/update-motd.d/*
+	rm /etc/legal
 	echo "Created user n00b!"
 
 	for level in $levels
