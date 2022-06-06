@@ -32,18 +32,14 @@ void read_log(char filename[]) {
 }
 
 void make_tmp(char * tmp) {
-	char day[3];
-	char min[3];
-	char sec[3];
+	char buffer[7];
 	time_t rawtime;
 	struct tm * timeinfo;
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
-	*strchr(tmp, X) = '\0';
-	strcat(tmp, itoa(timeinfo.tm_mday, day, 10));
-	strcat(tmp, itoa(timeinfo.tm_min, min, 10));
-	strcat(tmp, itoa(timeinfo.tm_sec, sec, 10));
-	strcat(tmp, "\0");
+	*strchr(tmp, 'X') = '\0';
+	sprintf(buffer, "%d%d%d\0", timeinfo->tm_mday, timeinfo->tm_min, timeinfo->tm_sec);
+	strcat(tmp, buffer);
 }
 
 int main() {
