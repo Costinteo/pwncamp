@@ -41,6 +41,9 @@ dump_readme() {
 	  might give away hints to how it's solved.
 
 	  However, in the current version, the differences are small.
+	  [!] An important consideration: ASLR is DISABLED!
+	  To disable ASLR on your machine (until reboot):
+	  $ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 
 	-- TOOLS --
 	  This machine has some tools installed, for your convenience:
@@ -133,13 +136,17 @@ remove_users() {
 	done
 }
 
-# setup some extra permissions
 extra() {
+	# setup some extra permissions
 	local no_read_perm="/tmp /proc"
 	for dir in $no_read_perm
 	do
 		chmod -r $dir
 	done
+
+	# disable ASLR
+	echo "kernel.randomize_va_space = 0" > /etc/sysctl.d/01-disable-aslr.conf
+	echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
 }
 
 setup() {
