@@ -24,10 +24,10 @@ void read_log(char filename[]) {
 		while (fgets(line, sizeof(line), f)) {
 			printf("%s", line);
 		}
+		fclose(f);
 	} else {
 		printf("File not found!\n");
 	}
-	fclose(f);
 }
 
 int main() {
