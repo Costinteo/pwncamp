@@ -89,10 +89,18 @@ dump_readme() {
 }
 
 make_users() {
+	make
 	local levels=$(ls bin)
+	
+	# n00bstuff
 	local prev_level="n00b"
 	useradd "n00b" -p "$(mkpasswd .getg00d!)" -m -d /home/n00b -s "/bin/bash"
+	chmod 555 /home/n00b
+	dump_readme > /home/n00b/README
+	chmod 444 /home/n00b/README
+	cp /home/n00b/README /etc/motd
 	echo "Created user n00b!"
+
 	for level in $levels
 	do
 		grep "$level" /etc/passwd -q
@@ -104,7 +112,7 @@ make_users() {
 		# owning
 		chown "$level:$prev_level" /home/$level/*
 		# perms
-		chmod 444 /home/$level
+		chmod 555 /home/$level
 		chmod 400 /home/$level/*
 		chmod 550 /home/$level/$level
 		# suid
@@ -112,9 +120,6 @@ make_users() {
 		prev_level=$level
 		echo "Created user $level!"
 	done
-	dump_readme > /home/n00b/README
-	chmod 444 /home/n00b/README
-	cp /home/n00b/README /etc/motd
 }
 
 remove_users() {
@@ -140,7 +145,6 @@ extra() {
 setup() {
 	[ "$UID" -ne 0 ] && echo "You must be root to run this script!" && exit 1
 	[ "$(echo $PWD | sed -nr 's|.+/||p')" != "pwncamp" ] && echo "You must clone pwncamp and be in its root dir!" && exit 1
-	make
 	local mode=$1
 	case "$mode" in
 	"install") make_users && extra ;;
