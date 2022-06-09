@@ -4,7 +4,7 @@
 
 #define FILE_OFFSET 3
 
-char FILES[10][20] = {
+char FILES[10][40] = {
 	"/home/level1/config.txt",
 	"/home/level1/pass.txt",
 	"/home/level1/project_ideas.txt",
