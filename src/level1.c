@@ -5,16 +5,16 @@
 #define FILE_OFFSET 3
 
 char FILES[10][20] = {
-	"config.txt",
-	"pass.txt",
-	"project_ideas.txt",
-	"test1.xml",
-	"test2.xml",
-	"test3.xml",
-	"comm_partner.cfg",
-	"chat_logs.txt",
-	"useful_commands.txt",
-	"todo"
+	"/home/level1/config.txt",
+	"/home/level1/pass.txt",
+	"/home/level1/project_ideas.txt",
+	"/home/level1/test1.xml",
+	"/home/level1/test2.xml",
+	"/home/level1/test3.xml",
+	"/home/level1/comm_partners.cfg",
+	"/home/level1/chat_logs.txt",
+	"/home/level1/useful_commands.txt",
+	"/home/level1/todo"
 };
 
 int main() {
