@@ -25,4 +25,3 @@ level6_dump: src/level6_dump.c
 
 %: src/%.c
 	$(CC) $< -o bin/$@ $(CFLAGS)
-	

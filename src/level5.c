@@ -73,14 +73,14 @@ int main() {
 
 	switch (option) {
 		case 1:
-			puts("Input platform, password and key, separated by whitespaces (PLATFORM PASSWORD KEY):");
+			puts("Input platform, password and key, separated by newlines:");
 			fgets(platform, 127, stdin);
 			fgets(pass, 127, stdin);
 			fgets(key, 63, stdin);
 			store_pass(platform, pass, key);
 			break;
 		case 2:
-			puts("Input platform and key, separated by whitespaces (PLATFORM KEY):");
+			puts("Input platform and key, separated by newlines:");
 			fgets(platform, 127, stdin);
 			fgets(key, 63, stdin);
 			load_pass(key, platform);
