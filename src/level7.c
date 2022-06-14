@@ -4,11 +4,13 @@
 #include <stdint.h>
 #include <unistd.h>
 
-char PASSWORD[] = "19o>B][;I=/IYLI%yljj";
+char PASSWORD[] = "2-X/Eg/Eh";
 char TRUE_CMD[] = "IK^\nZKYY\x04^R^";
 char RED_CMD[] = "OIBE\nDE^\nBOXO";
 char BLUE_CMD[] = "\x75\x5e\x1a\x1a\x41\x75\x5e\x42\x4f\x75\x48\x46\x5f\x4f\x5a\x43\x46\x46";
 char PRINT_CMD[] = "\x5a\x58\x43\x44\x5e\x4c\xa\x46\x1e\x50\x4b\x58\x5f\x59\x75\x4d\x58\x1a\x5f\x5a";
+char PASS_MSG[] = "zFOKYO\nCDZ_^\nZKYY]EXN\nKY\nLCXY^\nKXM_GOD^";
+char GRATS_MSG[] = "kIIOYY\nMXKD^ON";
 
 void hash(char * word) {
 	for (uint16_t k=3;*word;*word=(*word^k)%94+33,k=k*(k-1)+*word,++word);
@@ -21,22 +23,26 @@ void system_cmd(char * cmd) {
 }
 
 int main(int argc, char * argv[]) {
-	if (!argv[1]) {
+	if (argc != 2) {
+		memfrob(PASS_MSG, strlen(PASS_MSG));
+		printf("%s\n", PASS_MSG);
 		return 1;
 	}
 
-	char s[256];
-	scanf("%245s", s);
-	strncat(s, argv[1], sizeof(s) - strlen(s) - 1);
+	char s[32] = "";
+	char pass[32] = "";
+	scanf("%31s", s);
+	strncpy(pass, argv[1], 31);
 	int pos = 1;
+
 	while (1) {
-		switch (*(argv[pos])) {
-		case '0':
-			pos += 3;
+		switch (s[pos]) {
+		case '1':
+			pos -= 1;
 			break;
 		case '3':
-			hash(s);
-			pos -= 2;
+			hash(pass);
+			++pos;
 			break;
 		case '7':
 			pos += 10;
@@ -49,7 +55,7 @@ int main(int argc, char * argv[]) {
 			pos *= 3;
 			break;
 		case 'a':
-			if (!strcmp(s, PASSWORD)) {
+			if (!strcmp(pass, PASSWORD)) {
 				system_cmd(RED_CMD);
 			}
 			pos += 10;
@@ -70,20 +76,26 @@ int main(int argc, char * argv[]) {
 		case 'r':
 			pos += 13;
 			break;
-		case 's':
+		case 'm':
 			pos *= 2;
 			break;
-		case 'x':
+		case 'n':
 			pos += 2;
 			setreuid(geteuid(), geteuid());
+			break;
+		case 'h':
+			pos += 2;
 			break;
 		case 'C':
 			system_cmd(RED_CMD);
 			system_cmd(BLUE_CMD);
+			pos += 2;
 			break;
-		case 'K':
+		case '-':
 			pos += 20;
-			if (!strcmp(s, PASSWORD)) {
+			if (!strcmp(pass, PASSWORD)) {
+				memfrob(GRATS_MSG, strlen(GRATS_MSG));
+				printf("%s\n", GRATS_MSG);
 				system_cmd(TRUE_CMD);
 			}
 			break;
@@ -92,7 +104,7 @@ int main(int argc, char * argv[]) {
 			break;
 		case 'U':
 			pos *= 2 + 5;
-			if (!strcmp(s, PASSWORD)) {
+			if (!strcmp(pass, PASSWORD)) {
 				system_cmd(PRINT_CMD);
 			}
 			break;
@@ -107,6 +119,9 @@ int main(int argc, char * argv[]) {
 		case '.':
 			pos = pos * 2 + 5;
 			break;
+		case '@':
+			++pos;
+			break;
 		default:
 			goto EXIT;
 		}
@@ -114,3 +129,4 @@ int main(int argc, char * argv[]) {
 EXIT:
 	return 0;
 }
+
