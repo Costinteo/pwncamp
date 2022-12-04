@@ -3,7 +3,6 @@
  / .__/__,__/_//_/\__/\_,_/_/_/_/ .__/
 /_/                            /_/    
 ------------------------------------------------------------------------------
-
  Hacking bootcamp focused on binary exploitation, reverse engineering and
 (some) practical cryptography.
 
@@ -39,7 +38,11 @@ I picked the 64-bit one, but the binaries for the game are 32-bits.
 
  If you simply wish to play the levels on your own machine, you can build them
 using the provided Makefile. So simply call "make" and go through each level
-sequentially. You have to disable ASLR for some of them, though.
+sequentially. You have to disable ASLR for some of them, though. And you need
+to change the binaries' permissions to suid you to read a restrictive pass.txt
+file from the same directory. Otherwise it might be harder to know you've
+completed the level successfully.
+
 
 Disclaimer
 ------------------------------------------------------------------------------
