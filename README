@@ -4,9 +4,66 @@
 /_/                            /_/    
 ------------------------------------------------------------------------------
 
- Hacking bootcamp focused on binary exploitation and reverse engineering.
+ Hacking bootcamp focused on binary exploitation, reverse engineering and
+(some) practical cryptography.
+
+Motivation
+------------------------------------------------------------------------------
+ This wargame was created to serve as an educational tool, a competition for
+passionate students to enjoy. It also served as my Bachelor's Thesis, along
+with the written work, where I explored the levels from the perspective of a
+player and provided some brief theoretical background for the levels. There
+is also a part briefly discussing how to organise a competition using pwncamp.
+
+ You can find the written work here, along with presentation slides and
+some prepared virtual disks, containing pwncamp: 
+https://drive.google.com/drive/folders/114hFci2vUrPbnSB5SjD89Xb_2twT_zTt?usp=sharing
 
 
-Credits
------------------------------------------------------------------------------
- CVE-2016-9892 PoC XML files from ESET: https://seclists.org/fulldisclosure/2017/Feb/68
+Setup
+------------------------------------------------------------------------------
+ You can setup and customise pwncamp yourself! Simply setup a virtual machine,
+clone the repo and run "setup.sh". You would have to install the tools needed
+for playing yourself, though. 
+
+ My recommendation would be to also change the passwords found in ./rsrc/*. 
+This is so your students won't be able to simply find the passwords by google
+dorking. You might also want to change the name of the wargame, so they won't
+find the sources. Feel free to do that, but if you will distribute it, I'd
+appreciate you mentioning my name alongside the remixed wargame.
+
+ The virtual disks I've provided are, if I remember correctly, on some
+headless Ubuntu image I found on Ubuntu's official website. I think it was the
+mini iso: https://help.ubuntu.com/community/Installation/MinimalCD
+I picked the 64-bit one, but the binaries for the game are 32-bits.
+
+ If you simply wish to play the levels on your own machine, you can build them
+using the provided Makefile. So simply call "make" and go through each level
+sequentially. You have to disable ASLR for some of them, though.
+
+Disclaimer
+------------------------------------------------------------------------------
+ I haven't touched this project in a while. There might be bugs. It also
+hasn't been thoroughly tested, as  I haven't managed to find someone willing
+to play it. Students are busy people, apprently.
+
+
+License
+------------------------------------------------------------------------------
+ Since this project relies on distributing binaries without the source code,
+I felt it would be a bit silly to use GPL. So pwncamp's source code is
+licensed under the permissive MIT license. I also kindly ask that any
+distribution of the work to credit me as the original creator of the wargame.
+
+ The written work and presentation slides DO NOT fall under the MIT license.
+I'm not sure what I'd like to license them under yet, but I think the
+Creative Commons (CC BY-NC-SA) would work really well for them. However,
+I'm really not knowledgeable in copyright laws, so unsure if the written
+work is somehow also in my faculty's copyright domain or something.
+
+
+Contributing
+------------------------------------------------------------------------------
+ Feel free to open issues to suggest collaborations or improvements to it.
+There are a lot of things I'd change, but I am currently out of any
+motivational juices to keep improving upon it.
