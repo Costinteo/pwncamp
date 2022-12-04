@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-char PASSWORD[] = "2-X/Eg/Eh";
+char PASSWORD[] = "3m:OS%.DR";
 char TRUE_CMD[] = "IK^\nZKYY\x04^R^";
 char RED_CMD[] = "OIBE\nDE^\nBOXO";
 char BLUE_CMD[] = "\x75\x5e\x1a\x1a\x41\x75\x5e\x42\x4f\x75\x48\x46\x5f\x4f\x5a\x43\x46\x46";
@@ -33,97 +33,100 @@ int main(int argc, char * argv[]) {
 	char pass[32] = "";
 	scanf("%31s", s);
 	strncpy(pass, argv[1], 31);
-	int pos = 1;
+	int pos = 0;
+	
+	hash(pass);
+	if (!strcmp(pass, PASSWORD) && strlen(s) == 9 && s[0] == s[1] + s[8] && s[2] == s[5] - 11 && s[3] == s[8] + s[4] + 10) {
 
-	while (1) {
-		switch (s[pos]) {
-		case '1':
-			pos -= 1;
-			break;
-		case '3':
-			hash(pass);
-			++pos;
-			break;
-		case '7':
-			pos += 10;
-			system_cmd(BLUE_CMD);
-			break;
-		case '8':
-			pos *= 4;
-			break;
-		case '9':
-			pos *= 3;
-			break;
-		case 'a':
-			if (!strcmp(pass, PASSWORD)) {
-				system_cmd(RED_CMD);
-			}
-			pos += 10;
-			break;
-		case 'd':
-			goto EXIT;
-		case 'g':
-			system_cmd(PRINT_CMD);
-			pos ^= 2;
-			break;
-		case 'l':
-			pos = pos * 2 + 6;
-			break;
-		case 'o':
-			system_cmd(PRINT_CMD);
-			pos ^= 5;
-			break;
-		case 'r':
-			pos += 13;
-			break;
-		case 'm':
-			pos *= 2;
-			break;
-		case 'n':
-			pos += 2;
-			setreuid(geteuid(), geteuid());
-			break;
-		case 'h':
-			pos += 2;
-			break;
-		case 'C':
-			system_cmd(RED_CMD);
-			system_cmd(BLUE_CMD);
-			pos += 2;
-			break;
-		case '-':
-			pos += 20;
-			if (!strcmp(pass, PASSWORD)) {
-				memfrob(GRATS_MSG, strlen(GRATS_MSG));
-				printf("%s\n", GRATS_MSG);
-				system_cmd(TRUE_CMD);
-			}
-			break;
-		case 'S':
-			pos += 7;
-			break;
-		case 'U':
-			pos *= 2 + 5;
-			if (!strcmp(pass, PASSWORD)) {
+		while (1) {
+			switch (s[pos]) {
+			case '1':
+				pos -= 1;
+				break;
+			case '3':
+				++pos;
+				break;
+			case '7':
+				pos += 10;
+				system_cmd(BLUE_CMD);
+				break;
+			case '8':
+				pos *= 4;
+				break;
+			case '9':
+				pos *= 3;
+				break;
+			case 'a':
+				if (!strcmp(pass, PASSWORD)) {
+					system_cmd(RED_CMD);
+				}
+				pos += 10;
+				break;
+			case 'd':
+				goto EXIT;
+			case 'g':
 				system_cmd(PRINT_CMD);
-			}
-			break;
-		case 'W':
-			pos = 3;
-			break;
-		case 'Y':
-			if (pos > 20) {
+				pos ^= 2;
+				break;
+			case 'l':
+				pos = pos * 2 + 6;
+				break;
+			case 'o':
+				system_cmd(PRINT_CMD);
+				pos ^= 5;
+				break;
+			case 'r':
+				pos += 13;
+				break;
+			case 'm':
+				++pos;
+				break;
+			case 'n':
+				pos += 2;
+				break;
+			case 'h':
+				pos += 2;
+				break;
+			case 'c':
 				system_cmd(RED_CMD);
+				system_cmd(BLUE_CMD);
+				pos += 2;
+				break;
+			case '-':
+				pos += 20;
+				if (!strcmp(pass, PASSWORD)) {
+					setreuid(geteuid(), geteuid());
+					memfrob(GRATS_MSG, strlen(GRATS_MSG));
+					printf("%s\n", GRATS_MSG);
+					system_cmd(TRUE_CMD);
+				}
+				break;
+			case 'S':
+				pos += 7;
+				break;
+			case 'U':
+				pos *= 2 + 5;
+				if (!strcmp(pass, PASSWORD)) {
+					system_cmd(PRINT_CMD);
+				}
+				break;
+			case 'W':
+				pos = 3;
+				break;
+			case 'Y':
+				if (pos > 20) {
+					system_cmd(RED_CMD);
+				}
+				break;
+			case '.':
+				pos = pos * 2 + 5;
+				break;
+			case '@':
+				++pos;
+				break;
+			default:
+				goto EXIT;
 			}
-			break;
-		case '.':
-			pos = pos * 2 + 5;
-			break;
-		case '@':
-			++pos;
-			break;
-		default:
-			goto EXIT;
 		}
 	}
 EXIT:
